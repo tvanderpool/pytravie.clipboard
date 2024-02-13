@@ -1,0 +1,5 @@
+#!/bin/sh
+vchange=$(git diff HEAD~1 -- pyproject.toml | grep '^+version' | cut -d'=' -f2 | sed 's|[" ]||g')
+if [ -n "$vchange" ];then
+    git tag -f "v$vchange"
+fi
